@@ -24,9 +24,9 @@ const os = require('os'); //获取当前操作系统CPU的总数
 
 // 判断当前进程是否主线程
 if(cluster.isMaster){
-    for(let i = 0 ; i < os.cpus().length; i++){
+    // for(let i = 0 ; i < os.cpus().length; i++){
         cluster.fork();
-    }
+    // }
 
     // console.log(cluster.workers); // 获取生成的worker的进程(主线程调用)
 
@@ -44,7 +44,7 @@ if(cluster.isMaster){
 
 }else if(cluster.isWorker){
     const worker = cluster.worker;//获取当前子线程worker(子线程调用)
-    
+    const id = worker.id;
     worker.on('message', function (msg) {
         console.log(`worker  get Message ${msg}`);
         worker.send(1);
@@ -53,4 +53,6 @@ if(cluster.isMaster){
     worker.on('exit ', function (code, singal) {
         console.log(`worker :${worker.id}, ${code}`)
     });
+
+    worker.send(`work: ${id}`);
 }
