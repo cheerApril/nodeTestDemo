@@ -30,10 +30,10 @@ if(cluster.isMaster){
 
     // console.log(cluster.workers); // 获取生成的worker的进程(主线程调用)
 
-    cluster.on('fork', function (worker) {
-        console.log("fork = " + worker.id)
-    });
-    
+    // cluster.on('fork', function (worker) {
+    //     console.log("fork = " + worker.id)
+    // });
+    //
     cluster.on('message', function (worker, message, handle) {
         console.log(` Master get ${worker.id} message: ${message}`);
         worker.send("hello, cheer");
@@ -41,7 +41,6 @@ if(cluster.isMaster){
             worker.kill();
         }
     });
-
 }else if(cluster.isWorker){
     const worker = cluster.worker;//获取当前子线程worker(子线程调用)
     
@@ -53,4 +52,6 @@ if(cluster.isMaster){
     worker.on('exit ', function (code, singal) {
         console.log(`worker :${worker.id}, ${code}`)
     });
+
+    worker.send('hello cheer');
 }
