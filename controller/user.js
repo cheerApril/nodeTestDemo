@@ -19,6 +19,7 @@ module.exports = {
                     break;
             }
         }
+        // 正常会 做一些数据处理 来给前端显示
         modelUser.find(queryData, function (err, result) {
             if(err) throw err;
             res.status(200).send(result);
@@ -27,6 +28,7 @@ module.exports = {
 
     create: function (req, res, next) {
         const body = req.body;
+        console.log(body);
         const createData = {};
         for(let [index, value] of Object.entries(body)){
             switch (index){
@@ -51,7 +53,7 @@ module.exports = {
 
     update: function (req, res, next) {
         const id = req.query.id;
-        if(!id) throw "id 不能为空";
+        if(!id)  res.status(404).send("ID 不能为空");
         const body = req.body;
         console.log(body);
         const updateData = {};
@@ -72,7 +74,7 @@ module.exports = {
         }
         modelUser.findOne({_id:id}, function (err, result) {
             if(err || result === null) {
-                throw "user 不存在";
+                res.status(404).send("用户不存在");
             }else{
                 modelUser.updateOne({updateData}, function (err, result) {
                     if(err) throw err;
@@ -84,10 +86,11 @@ module.exports = {
     },
 
     delete: function (req, res, next) {
-        modelUser.findOne({}, function (err, result) {
-            if(err) throw err;
-            if(result) res.status(200).send(result);
-            res.status(200).send("暂无数据");
+        const id = req.query.id;
+        if(!id)  res.status(404).send("ID 不能为空");
+        modelUser.deleteOne({_id:id}, function (err) {
+            if(err) res.status(404).send("用户不存在");
+            res.status(200).send();
         });
     }
 };
