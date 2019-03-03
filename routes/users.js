@@ -7,6 +7,5 @@ router.post('/create', user.create);
 router.put('/update', user.update);
 router.delete('/delete', user.delete);
 
-
 module.exports = router;
 

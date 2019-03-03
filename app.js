@@ -9,6 +9,19 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+/**
+ * 扩展函数
+ */
+express.response.success = function (result) {
+    const code = 200;
+    res.status(code).send(result);
+};
+
+express.response.failure = function (result) {
+    const code = 404;
+    res.status(code).send(result);
+};
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

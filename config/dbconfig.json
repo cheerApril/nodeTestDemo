@@ -1,0 +1,9 @@
+{
+  "delelopment":{
+      "database": "pokemon",
+      "name": "root",
+      "password": "123456",
+      "host": "localhost",
+      "dialect": "mysql"
+  }
+}

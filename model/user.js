@@ -1,25 +1,30 @@
-const mongoose = require("mongoose");
-const db = mongoose.createConnection
-("mongodb://localhost:27017/koa_novel", {
-    useNewUrlParser : true
-});
-const schema = mongoose.Schema;
+const db = require('../db/database.js');
+const sequelize = db.sequelize;
+const Sequelize = db.Sequelize;
+const constants = require('../utils/constants.js');
 
-const ObjectId = schema.Types.ObjectId;
-
-const userSchema = new schema({
-    name: String,       // 用户名字
-    age: Number,        // 用户年龄
-    address: String,    // 用户地址
-}, {
-    versionKey: false,
-    timestamps: {
-        createdAt: 'createTime',
-        updatedAt: 'updateTime'
+module.exports = sequelize.define(
+    constants.MODEL_NAME.USER,
+    {
+        id: {
+            type: Sequelize.INTEGER(11),
+            primaryKey: true,
+            autoIncrement: true,
+            comment: 'ID'
+        },
+        name: {
+            type: Sequelize.STRING,
+            allowNull: true,
+            comment: '名字'
+        },
+        age: {
+            type: Sequelize.INTEGER(11),
+            allowNull: false,
+            comment: '年龄'
+        }
+    },
+    {
+        underscored: true,
+        freezeTableName: true
     }
-});
-
-
-const modelUser = db.model('user', userSchema);
-
-module.exports = modelUser;
+);
