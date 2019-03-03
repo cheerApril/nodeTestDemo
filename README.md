@@ -5,6 +5,6 @@ MYSQL 8.0.15 安装笔记:
 <Br/>在该目录下创建my.ind文件(https://blog.csdn.net/coffee_fighter/article/details/87632316)<Br/>
 然后在该目录下运行mysqld --initialize --console（要记得 A temporary password is generated for rooot@localhost: XXXXX） XXX的内容就是你等下进入SQL server的密码
 依次执行: mysqld --install MySQL ; 
-<Br/>net start MySQL
+<Br/>net start MySQL（主要这里要先把MySQL的安装路径放到电脑的环境变量里面,不然无法执行,因为我自己出了这个问题晕了...）
 <Br/>进入mySQL mysql -u root -p  (输入刚才记得的密码);
 <Br/> 修改密码 --- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';  
