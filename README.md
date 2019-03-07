@@ -8,3 +8,9 @@ MYSQL 8.0.15 安装笔记:
 <Br/>net start MySQL（主要这里要先把MySQL的安装路径放到电脑的环境变量里面,不然无法执行,因为我自己出了这个问题晕了...）
 <Br/>进入mySQL mysql -u root -p  (输入刚才记得的密码);
 <Br/> 修改密码 --- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';  
+
+<Br/>  来自菜鸟教程: http://www.runoob.com/mysql/mysql-create-tables.html
+
+创建 MySql 的表时，表名和字段名外面的符号 ` 不是单引号，而是英文输入法状态下的反单引号，也就是键盘左上角 esc 按键下面的那一个 ~ 按键，坑惨了。
+
+反引号是为了区分 MySql 关键字与普通字符而引入的符号，一般的，表名与字段名都使用反引号。
