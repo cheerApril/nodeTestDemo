@@ -24,8 +24,10 @@ MYSQL 8.0.15 安装笔记:
     FROM table_name
     WHERE column_name operator value
     GROUP BY column_name;
-<br/>group by 可以实现一个最简单的去重查询，假设想看下有哪些员工，除了用 distinct,还可以用：
+<br/>group by 
+可以实现一个最简单的去重查询，假设想看下有哪些员工，除了用 distinct,还可以用：
 SELECT name FROM employee_tbl GROUP BY name;
 返回的结果集就是所有员工的名字。
+<br/>
 2、分组后的条件使用 HAVING 来限定，WHERE 是对原始数据进行条件限制。几个关键字的使用顺序为 where 、group by 、having、order by ，例如：
 SELECT name ,sum(*)  FROM employee_tbl WHERE id<>1 GROUP BY name  HAVING sum(*)>5 ORDER BY sum(*) DESC;
