@@ -1,0 +1,28 @@
+alter table user add account char(13) not null comment "账号" after id;
+alter table user add password varchar(50) not null comment "密码" after account;
+alter table user add nick_name char(6) not null comment "用户名字" after password;
+alter table user add created_at datetime not null comment "创建时间" default current_timestamp after nick_name;
+alter table user add updated_at datetime not null comment "更新时间" default current_timestamp on update  current_timestamp after created_at;
+
+## pokemon的数据库 --- 因为数据库名字已经是pokemon了 所以先这样命名
+create table if not exists `poke`(
+    `id` int(11) auto_increment,
+    `admin_id` int(11) not null comment "创建人的名字",
+    `name` char(8) not null comment "名字",
+    `property_id` int(11) not null comment "属性id",
+    `created_at` datetime default current_timestamp,
+    `updated_at` datetime default current_timestamp on update current_timestamp,
+    primary key(`id`)
+);
+
+#adminUser  后台管理员
+create table if not exists `adminUser`(
+    `id` int(11) auto_increment,
+    `account` char(8) not null comment "管理员账号",
+    `password` varchar(50) not null comment "密码",
+    `name` char(8) not null comment "名字",
+    `created_at` datetime default current_timestamp,
+    `updated_at` datetime default current_timestamp on update current_timestamp,
+    primary key(`id`)
+);
+
