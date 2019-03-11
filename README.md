@@ -31,3 +31,6 @@ SELECT name FROM employee_tbl GROUP BY name;
 <br/>
 2、分组后的条件使用 HAVING 来限定，WHERE 是对原始数据进行条件限制。几个关键字的使用顺序为 where 、group by 、having、order by ，例如：
 SELECT name ,sum(*)  FROM employee_tbl WHERE id<>1 GROUP BY name  HAVING sum(*)>5 ORDER BY sum(*) DESC;
+
+
+<br/> DAY: 20190311 今天创建表的时候遇到到了,表的命名不区分大小写的问题: 查看官网https://dev.mysql.com/doc/refman/8.0/en/identifier-case-sensitivity.html 这个可以解决。。。。。。。。。。。好坑啊
