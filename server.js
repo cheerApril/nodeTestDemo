@@ -4,6 +4,26 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//定义res.success的方法
+express.response.success = function (data) {
+    var result = {};
+    var res = this;
+    result.code = 200;
+    result.data = data || {};
+
+    res.send(result);
+};
+
+//定义res.success的方法
+express.response.fail = function (reason) {
+    var result = {};
+    var res = this;
+    result.code = 404;
+    result.data = reason || {};
+
+    res.send(result);
+};
+
 const router = express.Router();
 const port = normalizePort(process.env.PORT || '3000');
 

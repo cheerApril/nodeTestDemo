@@ -2,22 +2,31 @@ const modelUser = require('../model/user.js');
 
 module.exports = {
     list: function (req, res, next) {
-        const query = req.query;
-        modelUser.find().then((user) =>{
+        const {page, pageSize} = req.query;
+        const offset = (page - 1) * pageSize;
+        modelUser.findAndCountAll({
+            offset: offset,
+            limit: parseInt(pageSize)
+        }).then(function (user) {
             res.success(user);
-        }).catch((err) =>{
-            next(err);
+        }).catch(function (e) {
+            next(e);
         });
     },
     
     create: function (req, res, next) {
+        const body = req.body;
         let createData = {};
-        for(let [index, value] of  createData){
+
+        for(let [index, value] of  Object.entries(body)){
             switch (index) {
-                case "name":
+                case "account":
                     createData[index] = value;
                     break;
-                case "age":
+                case "password":
+                    createData[index] = value;
+                    break;
+                case "name":
                     createData[index] = value;
                     break;
                 default:
@@ -32,27 +41,26 @@ module.exports = {
     },
     
     update: function (req, res, next) {
-        const id = req.params.id;
+        const id = req.query.id;
+        const body = req.body;
         let updateData = {};
-        for(let [index, value] of  req.body){
+        for(let [index, value] of Object.entries(body)){
             switch (index) {
-                case "name":
+                case "account":
                     updateData[index] = value;
                     break;
-                case "age":
+                case "password":
+                    updateData[index] = value;
+                    break;
+                case "name":
                     updateData[index] = value;
                     break;
                 default:
                     break;
             }
         }
-        modelUser.update(updateData,
-            {
-                where: {
-                    id: id
-                }
-            }
-        ).then((result) =>{
+
+        modelUser.update(updateData,{ where: {id:id}}).then((result) =>{
             res.success(result);
         }).catch((err) =>{
             next(err);
@@ -60,6 +68,16 @@ module.exports = {
     },
     
     delete: function (req, res, next) {
+        const id = req.query.id;
 
+        modelUser.destroy({
+            where:{
+                id: id
+            }
+        }).then(function (result) {
+            res.success(result);
+        }).catch(function (err) {
+            next(err);
+        });
     }
 };

@@ -12,19 +12,24 @@ module.exports = sequelize.define(
             autoIncrement: true,
             comment: 'ID'
         },
-        name: {
-            type: Sequelize.STRING,
-            allowNull: true,
+        account: {
+            type: Sequelize.STRING(11),
+            allowNull: false,
             comment: '名字'
         },
-        age: {
-            type: Sequelize.INTEGER(11),
+        password: {
+            type: Sequelize.INTEGER(50),
             allowNull: false,
             comment: '年龄'
+        },
+        name:{
+            type: Sequelize.STRING(6),
+            allowNull: false,
+            comment: "名字"
         }
     },
     {
-        underscored: true,
+        underscored: true, //  将自动设置所有属性的字段选项为下划线命名方式.不会覆盖已经定义的字段选项
         freezeTableName: true
     }
 );
