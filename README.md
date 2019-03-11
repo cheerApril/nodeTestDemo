@@ -32,4 +32,7 @@ SELECT name FROM employee_tbl GROUP BY name;
 2、分组后的条件使用 HAVING 来限定，WHERE 是对原始数据进行条件限制。几个关键字的使用顺序为 where 、group by 、having、order by ，例如：
 SELECT name ,sum(*)  FROM employee_tbl WHERE id<>1 GROUP BY name  HAVING sum(*)>5 ORDER BY sum(*) DESC;
 
-
+<br/> DAY 20190311 MySQL在Windows下创建数据库databases还有table数据表不能大小写的问题,查了一下资料说lower_case_table_names = 2 在my.ini设置添加就没事了，试过了不行,所以我就重装了一下MYSQL了, 遇到的坑:
+<br/> 1. datadir=D:\\mysql-8.0.15-winx64\\Data  保存数据的名字不能为大写,不然会报错
+<br/> 2. my.ini 保存下来的编码一定是要ANSI格式文件, 不然会报错:found option without preceding group
+<br/> 3. 数据库命名还是用下划线吧,别用大小写了~！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
