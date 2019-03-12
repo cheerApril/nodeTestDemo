@@ -36,3 +36,6 @@ SELECT name ,sum(*)  FROM employee_tbl WHERE id<>1 GROUP BY name  HAVING sum(*)>
 <br/> 1. datadir=D:\\mysql-8.0.15-winx64\\Data  保存数据的名字不能为大写,不然会报错
 <br/> 2. my.ini 保存下来的编码一定是要ANSI格式文件, 不然会报错:found option without preceding group
 <br/> 3. 数据库命名还是用下划线吧,别用大小写了~！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+<br/> 20190312 const test = [];创建的是一个数组 其实是申请了内存的一换数据给test这个变量, const test = new Array(1,2,35,6);
+test[0] = 2; const test = test; 修改之后重新赋值给当前变量会导致原来的数据库会混乱，最好的处理方式就是创建一个新的变量变成新的array数据. 
