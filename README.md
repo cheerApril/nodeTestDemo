@@ -40,3 +40,6 @@ SELECT name ,sum(*)  FROM employee_tbl WHERE id<>1 GROUP BY name  HAVING sum(*)>
 <br/> 20190312 const test = [];创建的是一个数组 其实是申请了内存的一换数据给test这个变量, const test = new Array(1,2,35,6);
 test[0] = 2; const test = test; 修改之后重新赋值给当前变量会导致原来的数据库会混乱，最好的处理方式就是创建一个新的变量变成新的array数据. 
 <br/> 《》select version(); 查看MYSQL 版本
+
+
+<br/>  https://www.jianshu.com/p/9c78548caffa mocha官方翻译文档
