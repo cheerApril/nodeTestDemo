@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+
+// 中间件使用 -- req.body能获取到body的数据的原因
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -24,7 +26,6 @@ express.response.fail = function (reason) {
     res.send(result);
 };
 
-const router = express.Router();
 const port = normalizePort(process.env.PORT || '3000');
 
 /* 后期会使用 fs.readdir读取该文件的数据进行路由处理

@@ -9,10 +9,9 @@ let constants = {};
  * @type {{USER: string}}
  */
 constants.MODEL_NAME = {
-    USER: 'user'
+    USER: 'user',
+    ADMIN_USER: 'admin_user'
 };
 
 
-
-
-module.exports =  constants;
+module.exports = constants;

@@ -22,14 +22,26 @@ module.exports = sequelize.define(
             allowNull: false,
             comment: '年龄'
         },
-        name:{
+        name: {
             type: Sequelize.STRING(6),
             allowNull: false,
             comment: "名字"
+        },
+        created_time: {
+            type: Sequelize.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        },
+        updated_time: {
+            type: Sequelize.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal(`CURRENT_TIMESTAMP`)
         }
+
     },
     {
         underscored: true, //  将自动设置所有属性的字段选项为下划线命名方式.不会覆盖已经定义的字段选项
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false //
     }
 );
