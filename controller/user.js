@@ -2,7 +2,7 @@ const modelUser = require('../model/user.js');
 
 module.exports = {
     list: function (req, res, next) {
-        const {page, pageSize} = req.query;
+        const {page = 1, pageSize = 5} = req.query;
         const offset = (page - 1) * pageSize;
         modelUser.findAndCountAll({
             offset: offset,

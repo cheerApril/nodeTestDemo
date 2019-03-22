@@ -1,10 +1,14 @@
 const express = require('express');
+const path = require(`path`);
 const app = express();
-
 // 中间件使用 -- req.body能获取到body的数据的原因
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//模板中间件设置(设置相关文件 + 模块)
+app.set(`views`, path.join(__dirname, `./views`));
+app.set(`view engine`, `pug`);
 
 //定义res.success的方法
 express.response.success = function (data) {
@@ -31,7 +35,8 @@ const port = normalizePort(process.env.PORT || '3000');
 /* 后期会使用 fs.readdir读取该文件的数据进行路由处理
  */
 const userRouter = require('./routes/users.js');
-
+const indexRouter = require(`./routes/index.js`);
+app.use(`/`, indexRouter);
 app.use('/user', userRouter);
 app.listen(port, function () {
     console.log(`server is listening on Post:${port}`);
