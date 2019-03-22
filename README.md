@@ -49,3 +49,5 @@ test[0] = 2; const test = test; 修改之后重新赋值给当前变量会导致
 “../”：代表上一层目录。
 以”/”开头：代表根目录。
 
+</br> web 验证 https://www.jianshu.com/p/805dc2a0f49e 下面的评论还行
+
