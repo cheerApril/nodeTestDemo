@@ -16,7 +16,6 @@ express.response.success = function (data) {
     var res = this;
     result.code = 200;
     result.data = data || {};
-
     res.send(result);
 };
 
@@ -32,12 +31,17 @@ express.response.fail = function (reason) {
 
 const port = normalizePort(process.env.PORT || '3000');
 
-/* 后期会使用 fs.readdir读取该文件的数据进行路由处理
+/*
+ 后期会使用 fs.readdir读取该文件的数据进行路由处理
+
  */
-const userRouter = require('./routes/users.js');
 const indexRouter = require(`./routes/index.js`);
+const adminRouter = require(`./routes/admin.js`);
+const userRouter = require('./routes/users.js');
 app.use(`/`, indexRouter);
 app.use('/user', userRouter);
+app.use(`/admin`, adminRouter);
+
 app.listen(port, function () {
     console.log(`server is listening on Post:${port}`);
 });

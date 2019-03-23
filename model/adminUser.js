@@ -13,6 +13,7 @@ module.exports = sequelize.define(
         account: {
             type: Sequelize.STRING(50),
             allowNull: false,
+            unique: true,
             comment: `登录账号`
         },
         password: {
@@ -24,7 +25,7 @@ module.exports = sequelize.define(
             allowNull: false,
             comment: `管理员名字`
         },
-        created_tim2222e: {
+        created_time: {
             type: Sequelize.DATE,
             allowNull: false,
             defaultValue: sequelize.literal(`CURRENT_TIMESTAMP`)
