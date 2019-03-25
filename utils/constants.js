@@ -13,5 +13,7 @@ constants.MODEL_NAME = {
     ADMIN_USER: 'admin_user'
 };
 
+constants.SECRETKEY = `cheerApril`;
+
 
 module.exports = constants;
